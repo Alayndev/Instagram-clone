@@ -1,0 +1,27 @@
+import { Post } from "models/post";
+import { PostType, CreatePostType, PostCreatedRes } from "lib/types";
+
+export async function getAllPosts(): Promise<PostType[]> {
+  const initialPosts: PostType[] = await Post.getAllPosts();
+
+  return initialPosts;
+}
+
+export async function createNewPost(
+  data: CreatePostType
+): Promise<PostCreatedRes> {
+  const postCreated: PostCreatedRes = await Post.createNewPost(data);
+
+  return postCreated;
+}
+
+export async function updatePostLikes(postId: string) {
+  const postRef = new Post(postId);
+  await postRef.pullOrder();
+
+  postRef.data.likes = postRef.data.likes + 1;
+
+  await postRef.pushOrder();
+
+  return { updated: true };
+}
