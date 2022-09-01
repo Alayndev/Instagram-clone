@@ -1,4 +1,4 @@
-import { firestore } from "lib/connections/firestore";
+import { firestore } from "lib/connections/firebase/admin";
 
 const collection = firestore.collection("posts");
 
@@ -44,7 +44,7 @@ class Post {
     const initialPosts: PostType[] = [];
 
     snapshot.forEach((doc: any) => {
-      const post: PostType = doc.data();
+      const post: PostType = { ...doc.data(), id: doc.id };
 
       initialPosts.push(post);
     });
