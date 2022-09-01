@@ -38,6 +38,7 @@ export function ImageUploader({
           setUrl(downloadUrl);
           setValue(id, { src: downloadUrl });
           setLoading(false);
+          setValue("image", downloadUrl)
         });
       };
 
@@ -71,7 +72,6 @@ export function ImageUploader({
               className="object-cover w-40 h-40 m-0"
             />
 
-            <p>{url}</p>
           </div>
         ) : (
           <div className="grid place-items-center cursor-pointer w-40">

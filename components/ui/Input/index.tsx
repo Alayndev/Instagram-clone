@@ -1,7 +1,7 @@
 import React from "react";
 import { InputProps } from "lib/types";
 
-export const Input = (props: InputProps) => {
+export const Input = (props: any) => {
   return (
     <span className="relative">
       <input
@@ -14,6 +14,7 @@ export const Input = (props: InputProps) => {
             : "border-gray-novateva focus:border-blue-maker"
         } `}
         placeholder="john@doe.com"
+        defaultValue={props.defaultValue}
         {...props.register(props.id)}
       />
       <label

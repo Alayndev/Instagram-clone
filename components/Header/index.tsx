@@ -39,6 +39,7 @@ export const Header: NextComponentType = () => {
     register,
     handleSubmit,
     setValue,
+    watch,
     reset,
     formState: { errors },
   } = useForm({
@@ -63,7 +64,14 @@ export const Header: NextComponentType = () => {
       "🚀 ~ file: index.tsx ~ line 47 ~ createPost ~ postCreated",
       postCreated
     );
+
+    if (postCreated.created === true) {
+      closeModal();
+    }
   };
+
+  const image =
+    watch("photoURL") !== undefined ? watch("photoURL").src : undefined;
 
   return (
     <>
@@ -117,6 +125,7 @@ export const Header: NextComponentType = () => {
                 type="text"
                 label="Url"
                 register={register}
+                defaultValue={image}
               />
 
               {errors.image && (
