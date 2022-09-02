@@ -12,9 +12,9 @@ const Home: NextPage = () => {
     <>
       <Header />
 
-      <div className="flex flex-col gap-5 justify-center items-center">
+      <div className="flex flex-col gap-5 justify-center items-center py-5">
         {posts.map((post: any) => {
-          return <InstagramCard post={post} key={post.id} />;
+          return <InstagramCard post={post} key={post.id} userName="Claudio López" />;
         })}
       </div>
     </>

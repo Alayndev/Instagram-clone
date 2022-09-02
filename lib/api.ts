@@ -59,3 +59,26 @@ export const updatePostLikes = async (postId: string) => {
     return false;
   }
 };
+
+export const updatePostText = async (postId: string, body) => {
+  try {
+    const res = await fetch("/api/posts/text?postId=" + postId, {
+      method: "PATCH",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await res.json();
+
+    if (data.updated === true) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};

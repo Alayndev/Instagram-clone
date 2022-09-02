@@ -1,4 +1,3 @@
-import type { NextComponentType } from "next";
 import { useState, useEffect } from "react";
 import {
   AiOutlineHeart,
@@ -70,7 +69,7 @@ export function Header() {
 
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between p-3 border-b-2">
         <div className="flex items-center justify-center">
           <span className="text-3xl font-bold">Instagram</span>
 
