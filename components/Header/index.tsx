@@ -14,8 +14,13 @@ import { Input } from "components/ui/Input";
 import { useForm } from "react-hook-form";
 import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { createNewPost } from "lib/api";
+import { useSWRConfig } from "swr";
 
-export const Header: NextComponentType = () => {
+// Todo: CreatePostForm (Modal)
+export function Header() {
+  const { mutate } = useSWRConfig();
+
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -29,7 +34,7 @@ export const Header: NextComponentType = () => {
 
   const schema = object().shape({
     photoURL: object().shape({
-      src: string().required("Debe seleccionar una imagen."),
+      src: string(),
     }),
     image: string().required("Debe ingresar la url de la imagen."),
     texto: string(),
@@ -47,26 +52,16 @@ export const Header: NextComponentType = () => {
   });
 
   const createPost = async (data) => {
-    console.log(data, "data");
-
     delete data.photoURL;
 
-    const res = await fetch("/api/posts", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = createNewPost(data);
 
-    const postCreated = await res.json();
-    console.log(
-      "🚀 ~ file: index.tsx ~ line 47 ~ createPost ~ postCreated",
-      postCreated
-    );
-
-    if (postCreated.created === true) {
+    if (res) {
+      mutate("get-posts");
       closeModal();
+    } else {
+      // toast
+      console.log("Toast");
     }
   };
 
@@ -149,4 +144,4 @@ export const Header: NextComponentType = () => {
       )}
     </>
   );
-};
+}

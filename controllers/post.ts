@@ -19,7 +19,18 @@ export async function updatePostLikes(postId: string) {
   const postRef = new Post(postId);
   await postRef.pullOrder();
 
-  postRef.data.likes = postRef.data.likes + 1;
+  postRef.data.likes = !postRef.data.likes ? 1 : postRef.data.likes + 1;
+
+  await postRef.pushOrder();
+
+  return { updated: true };
+}
+
+export async function updatePostText(postId: string, text: string) {
+  const postRef = new Post(postId);
+  await postRef.pullOrder();
+
+  postRef.data.texto = text;
 
   await postRef.pushOrder();
 
