@@ -63,7 +63,13 @@ export function InstagramCard({ post, userName }) {
         </div>
 
         <div className="flex justify-center w-full">
-          <img src={post.image} alt="Post image" width={300} height={400} />
+          {post.isVideo ? (
+            <video controls muted autoPlay width={300} height={400}>
+              <source src={post.image} />
+            </video>
+          ) : (
+            <img src={post.image} alt="Post image" width={300} height={400} />
+          )}
         </div>
 
         <div className="p-2 flex flex-col gap-2">
@@ -90,7 +96,9 @@ export function InstagramCard({ post, userName }) {
         </div>
       </div>
 
-      {editText && <EditTextForm setEditText={setEditText} post={selectedPost} />}
+      {editText && (
+        <EditTextForm setEditText={setEditText} post={selectedPost} />
+      )}
     </>
   );
 }

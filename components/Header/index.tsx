@@ -11,12 +11,12 @@ import { Modal } from "components/ui/modal/Modal";
 import { ImageUploader } from "components/ImageUploader";
 import { Input } from "components/ui/Input";
 import { useForm } from "react-hook-form";
-import { object, string } from "yup";
+import { boolean, object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createNewPost } from "lib/api";
 import { useSWRConfig } from "swr";
 
-// Todo: CreatePostForm (Modal)
+// Todo: CreateImagePostForm (Modal) - CreateVideoPostForm - Headless Tabs (por accesibilidad)
 export function Header() {
   const { mutate } = useSWRConfig();
 
@@ -37,6 +37,7 @@ export function Header() {
     }),
     image: string().required("Debe ingresar la url de la imagen."),
     texto: string(),
+    isVideo: boolean(),
   });
 
   const {
@@ -111,6 +112,15 @@ export function Header() {
                 id="photoURL"
                 error={errors.photoURL}
                 setValue={setValue}
+                dataType="image"
+              />
+
+              <ImageUploader
+                register={register}
+                id="photoURL"
+                error={errors.photoURL}
+                setValue={setValue}
+                dataType="video"
               />
 
               <Input

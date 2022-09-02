@@ -12,13 +12,29 @@ export function ImageUploader({
   error,
   value,
   readOnly,
+  dataType,
 }: any) {
   const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const { uploadFile } = useFiles();
 
+  const filesForImage = {
+    "image/svg": [],
+    "image/jpg": [],
+    "image/jpeg": [],
+    "image/png": [],
+    "image/gif": [],
+  };
+
+  const filesForVideo = {
+    "video/mp4": [],
+    "video/ogv": [],
+  };
+
+  const acceptedFiles = dataType === "image" ? filesForImage : filesForVideo;
+
   const { getRootProps, getInputProps } = useDropzone({
-    accept: "image/*",
+    accept: acceptedFiles,
     disabled: readOnly,
     onDrop: (acceptedFiles) => {
       const task = uploadFile(
@@ -38,7 +54,14 @@ export function ImageUploader({
           setUrl(downloadUrl);
           setValue(id, { src: downloadUrl });
           setLoading(false);
-          setValue("image", downloadUrl)
+
+          if (dataType === "video") {
+            setValue("isVideo", true);
+            setValue("image", downloadUrl);
+          } else if (dataType === "image") {
+            setValue("isVideo", false);
+            setValue("image", downloadUrl);
+          }
         });
       };
 
@@ -66,18 +89,35 @@ export function ImageUploader({
         <input type="file" name={id} {...register(id)} {...getInputProps()} />
         {url ? (
           <div className="flex flex-col gap-2">
-            <img
-              alt="Avatar"
-              src={url}
-              className="object-cover w-40 h-40 m-0"
-            />
-
+            {dataType === "image" ? (
+              <img
+                alt="Avatar"
+                src={url}
+                className="object-cover w-40 h-40 m-0"
+              />
+            ) : (
+              <video
+                controls
+                muted
+                autoPlay
+                className="object-cover w-40 h-40 m-0"
+              >
+                <source src={url} />
+              </video>
+            )}
           </div>
         ) : (
           <div className="grid place-items-center cursor-pointer w-40">
             {!loading ? (
               <>
-                <span className="uppercase">Subir</span>
+                <span className="uppercase">
+                  Subir{" "}
+                  {dataType === "image" ? (
+                    <span>imagen</span>
+                  ) : (
+                    <span>video</span>
+                  )}
+                </span>
                 <MdOutlineFileUpload />
               </>
             ) : (

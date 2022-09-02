@@ -10,10 +10,10 @@ let bodySchema = yup
   .shape({
     image: yup.string().required("image required by body"),
     texto: yup.string(),
+    isVideo: yup.boolean(),
   })
   .noUnknown(true)
   .strict();
-
 
 async function getPosts(req: NextApiRequest, res: NextApiResponse<PostType[]>) {
   const posts: PostType[] = await getAllPosts();
