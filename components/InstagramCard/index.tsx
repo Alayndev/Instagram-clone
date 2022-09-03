@@ -1,35 +1,43 @@
 /* eslint-disable @next/next/no-img-element */
-import { updatePostLikes } from "lib/api";
+import { updatePostLikes, getAllPosts } from "lib/api";
 import { useState, useEffect } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { useSWRConfig } from "swr";
 import { BsThreeDots } from "react-icons/bs";
 import { FaRegComment } from "react-icons/fa";
 import { FiSend } from "react-icons/fi";
 import { EditTextForm } from "components/EditTextForm";
+import { toast } from "react-hot-toast";
 
-export function InstagramCard({ post, userName }) {
-  const { mutate } = useSWRConfig();
-
+export function InstagramCard({ post, userName, setPosts }) {
   const [postsIds, setPostsIds] = useState([]);
   const [postLiked, setPostLiked] = useState(false);
 
   const [editText, setEditText] = useState(false);
   const [selectedPost, setSelectedPost] = useState(false);
 
-  const onLike = async (postId: string) => {
-    const res = await updatePostLikes(postId);
+  const onUpdateLikes = async (postId: string) => {
+    await updatePostLikes(postId);
 
-    if (res) {
-      setPostLiked(true);
-      setPostsIds((prevState) => {
-        return [...prevState, postId];
+    setPostLiked(true);
+    setPostsIds((prevState) => {
+      return [...prevState, postId];
+    });
+
+    const posts = await getAllPosts();
+    setPosts(posts);
+  };
+
+  const updateLikes = async (postId: string) => {
+    try {
+      await toast.promise(onUpdateLikes(postId), {
+        loading: "Actualizando publicación...",
+        success: (res) => {
+          return `Publicación actualizada correctamente`;
+        },
+        error: (err) => `${err.toString()}`,
       });
-
-      mutate("get-posts");
-    } else {
-      // toast
-      console.log("Toast");
+    } catch (error) {
+      toast.error(`Ha ocurrido un error: ${error}`);
     }
   };
 
@@ -79,7 +87,7 @@ export function InstagramCard({ post, userName }) {
             ) : (
               <AiOutlineHeart
                 className="cursor-pointer"
-                onClick={() => onLike(post.id)}
+                onClick={() => updateLikes(post.id)}
               />
             )}
 
@@ -97,7 +105,11 @@ export function InstagramCard({ post, userName }) {
       </div>
 
       {editText && (
-        <EditTextForm setEditText={setEditText} post={selectedPost} />
+        <EditTextForm
+          setEditText={setEditText}
+          post={selectedPost}
+          setPosts={setPosts}
+        />
       )}
     </>
   );

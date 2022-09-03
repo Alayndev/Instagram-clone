@@ -3,12 +3,10 @@ import { Input } from "components/ui/Input";
 import { useForm } from "react-hook-form";
 import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { updatePostText } from "lib/api";
-import { useSWRConfig } from "swr";
+import { updatePostText, getAllPosts } from "lib/api";
+import { toast } from "react-hot-toast";
 
-export function EditTextForm({ setEditText, post }) {
-  const { mutate } = useSWRConfig();
-
+export function EditTextForm({ setEditText, post, setPosts }) {
   const schema = object().shape({
     texto: string().required(
       "Debe ingresar la nueva descripción de la publicación."
@@ -32,18 +30,26 @@ export function EditTextForm({ setEditText, post }) {
     reset();
   };
 
-  const editPost = async (data) => {
-    console.log("🚀 ~ file: index.tsx ~ line 34 ~ editPost ~ data", data);
-    const res = await updatePostText(post.id, data);
-    console.log("🚀 ~ file: index.tsx ~ line 38 ~ editPost ~ res", res)
+  const onEditPost = async (data) => {
+    await updatePostText(post.id, data);
 
-    if (res) {
-      mutate("get-posts");
-      
-      closeModal();
-    } else {
-      //toast
-      console.log("Toast");
+    const posts = await getAllPosts();
+    setPosts(posts);
+
+    closeModal();
+  };
+
+  const editPost = async (data) => {
+    try {
+      await toast.promise(onEditPost(data), {
+        loading: "Actualizando el texto...",
+        success: (res) => {
+          return `Texto actualizado correctamente`;
+        },
+        error: (err) => `${err.toString()}`,
+      });
+    } catch (error) {
+      toast.error(`Ha ocurrido un error: ${error}`);
     }
   };
 

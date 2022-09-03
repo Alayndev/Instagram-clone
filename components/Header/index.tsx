@@ -13,13 +13,11 @@ import { Input } from "components/ui/Input";
 import { useForm } from "react-hook-form";
 import { boolean, object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { createNewPost } from "lib/api";
-import { useSWRConfig } from "swr";
+import { createNewPost, getAllPosts } from "lib/api";
+import { toast } from "react-hot-toast";
 
 // Todo: CreateImagePostForm (Modal) - CreateVideoPostForm - Headless Tabs (por accesibilidad)
-export function Header() {
-  const { mutate } = useSWRConfig();
-
+export function Header({ setPosts }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -51,17 +49,28 @@ export function Header() {
     resolver: yupResolver(schema),
   });
 
+  const onCreatePost = async (data) => {
+    await createNewPost(data);
+
+    const posts = await getAllPosts();
+    setPosts(posts);
+
+    closeModal();
+  };
+
   const createPost = async (data) => {
     delete data.photoURL;
 
-    const res = createNewPost(data);
-
-    if (res) {
-      mutate("get-posts");
-      closeModal();
-    } else {
-      // toast
-      console.log("Toast");
+    try {
+      await toast.promise(onCreatePost(data), {
+        loading: "Creando publicación...",
+        success: (res) => {
+          return `Publicación creada correctamente`;
+        },
+        error: (err) => `${err.toString()}`,
+      });
+    } catch (error) {
+      toast.error(`Ha ocurrido un error: ${error}`);
     }
   };
 

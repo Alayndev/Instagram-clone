@@ -1,36 +1,25 @@
-// SWR
-import useSWRImmutable from "swr/immutable";
+import axios from "axios";
 
-export const useGetAllPosts = () => {
-  const { data, error } = useSWRImmutable(
-    "get-posts",
-    async () => {
-      const res = await fetch("http://localhost:3000/api/posts");
-      const data = await res.json();
+export const getAllPosts = async () => {
+  try {
+    const { data } = await axios.get("http://localhost:3000/api/posts");
 
-      console.log("fetcher Immutable");
-
-      return data;
-    },
-    { suspense: true }
-  );
-
-  return data;
+    return data;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
 };
 
-export const createNewPost = async (data) => {
+export const createNewPost = async (body) => {
   try {
-    const res = await fetch("/api/posts", {
-      method: "POST",
-      body: JSON.stringify(data),
+    const { data } = await axios.post("/api/posts", body, {
       headers: {
-        "Content-Type": "application/json",
+        "content-type": "application/json",
       },
     });
 
-    const postCreated = await res.json();
-
-    if (postCreated.created === true) {
+    if (data.created === true) {
       return true;
     } else {
       return false;
@@ -43,11 +32,7 @@ export const createNewPost = async (data) => {
 
 export const updatePostLikes = async (postId: string) => {
   try {
-    const res = await fetch("/api/posts/likes?postId=" + postId, {
-      method: "PATCH",
-    });
-
-    const data = await res.json();
+    const { data } = await axios.patch("/api/posts/likes?postId=" + postId);
 
     if (data.updated === true) {
       return true;
@@ -62,15 +47,7 @@ export const updatePostLikes = async (postId: string) => {
 
 export const updatePostText = async (postId: string, body) => {
   try {
-    const res = await fetch("/api/posts/text?postId=" + postId, {
-      method: "PATCH",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    const data = await res.json();
+    const { data } = await axios.patch("/api/posts/text?postId=" + postId, body);
 
     if (data.updated === true) {
       return true;
