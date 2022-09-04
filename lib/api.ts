@@ -19,8 +19,6 @@ export const createNewPost = async (body) => {
       },
     });
 
-    console.log(data, "data createNewPost api.ts");
-
     if (data.created === true) {
       return true;
     } else {

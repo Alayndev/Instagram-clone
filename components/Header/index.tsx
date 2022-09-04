@@ -15,6 +15,8 @@ import { boolean, object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createNewPost, getAllPosts } from "lib/api";
 import { toast } from "react-hot-toast";
+import { InstagramStory } from "components/InstagramStory";
+import stories from "stories.json";
 
 // Todo: CreateImagePostForm (Modal) - CreateVideoPostForm - Headless Tabs (por accesibilidad)
 export function Header({ setPosts }) {
@@ -79,22 +81,39 @@ export function Header({ setPosts }) {
 
   return (
     <>
-      <div className="flex items-center justify-between p-3 border-b-2">
-        <div className="flex items-center justify-center">
-          <span className="text-3xl font-bold">Instagram</span>
+      <div className="border-b-2 p-3 flex flex-col gap-5 sticky top-0 z-50 bg-white">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center justify-center">
+            <span className="text-3xl font-bold">Instagram</span>
 
-          <IoIosArrowDown className="mt-4 h-5 w-5" />
+            <IoIosArrowDown className="mt-4 h-5 w-5" />
+          </div>
+
+          <div className="flex gap-3 md:gap-8 items-center justify-center">
+            <AiOutlinePlus
+              onClick={openModal}
+              className="w-6 h-6 border-2 border-black rounded-lg cursor-pointer"
+            />
+
+            <AiOutlineHeart className="w-7 h-7" />
+
+            <AiOutlineMessage className="w-6 h-6" />
+          </div>
         </div>
 
-        <div className="flex gap-3 items-center justify-center">
-          <AiOutlinePlus
-            onClick={openModal}
-            className="w-6 h-6 border-2 border-black rounded-lg cursor-pointer"
-          />
-
-          <AiOutlineHeart className="w-7 h-7" />
-
-          <AiOutlineMessage className="w-6 h-6" />
+        <div className="px-5 flex gap-5 md:gap-10 overflow-hidden overscroll-auto overflow-x-scroll no-scrollbar">
+          {stories.map((story) => {
+            return (
+              <InstagramStory
+                width="w-[40px]"
+                height="h-[40px]"
+                key={story.id}
+                userName={story.userName}
+                src={story.src}
+                closeFriends={story.closeFriends}
+              />
+            );
+          })}
         </div>
       </div>
 

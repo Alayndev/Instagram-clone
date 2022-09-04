@@ -1,0 +1,50 @@
+[
+  {
+    "id": 0,
+    "userName": "gonzaricci",
+    "src": "https://firebasestorage.googleapis.com/v0/b/instagram-clone-6bd64.appspot.com/o/WhatsApp%20Image%202022-07-04%20at%2012.40.51%20PM.jpeg-1662241822467?alt=media&token=773a7d62-43c6-4587-9197-06a047786b9e",
+    "closeFriends": false
+  },
+  {
+    "id": 1,
+    "userName": "sofiaherrera",
+    "src": "https://firebasestorage.googleapis.com/v0/b/instagram-clone-6bd64.appspot.com/o/pexels-dominika-mazur-13234871.jpg-1662326937075?alt=media&token=5da39939-23d0-4a3c-b880-a007d8e18dae",
+    "closeFriends": true
+  },
+  {
+    "id": 2,
+    "userName": "marcolopez",
+    "src": "https://firebasestorage.googleapis.com/v0/b/instagram-clone-6bd64.appspot.com/o/pexels-pixabay-33109.jpg-1662326955712?alt=media&token=c3f88835-d934-4519-a579-037f290f54e0",
+    "closeFriends": true
+  },
+  {
+    "id": 3,
+    "userName": "julietaaquino",
+    "src": "https://firebasestorage.googleapis.com/v0/b/instagram-clone-6bd64.appspot.com/o/pexels-andrew-neel-12626692.jpg-1662326988207?alt=media&token=9845222f-88d6-449c-8af3-e228385acb97",
+    "closeFriends": false
+  },
+  {
+    "id": 4,
+    "userName": "candebianco",
+    "src": "https://firebasestorage.googleapis.com/v0/b/instagram-clone-6bd64.appspot.com/o/pexels-designecologist-975657.jpg-1662332062552?alt=media&token=b4a6c88b-3cb4-4ec8-a0ae-cbcb908cfcdc",
+    "closeFriends": false
+  },
+  {
+    "id": 5,
+    "userName": "matiserrano",
+    "src": "https://firebasestorage.googleapis.com/v0/b/instagram-clone-6bd64.appspot.com/o/pexels-marx-ilagan-634848.jpg-1662332799544?alt=media&token=1a6c5cf1-3d14-4255-ab3f-0fec0be31ada",
+    "closeFriends": false
+  },
+  {
+    "id": 6,
+    "userName": "joacocosta",
+    "src": "https://firebasestorage.googleapis.com/v0/b/instagram-clone-6bd64.appspot.com/o/walter-white-ride.jpeg-1662332872937?alt=media&token=6e58f9a3-b784-498e-8796-2994e080c5d2",
+    "closeFriends": false
+  },
+  {
+    "id": 7,
+    "userName": "tobigreco",
+    "src": "https://firebasestorage.googleapis.com/v0/b/instagram-clone-6bd64.appspot.com/o/cute-cat.jpeg-1662332960449?alt=media&token=4351f892-e3fb-480a-9804-27814a5195a0",
+    "closeFriends": false
+  }
+]

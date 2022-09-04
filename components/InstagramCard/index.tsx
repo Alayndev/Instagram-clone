@@ -7,6 +7,7 @@ import { FaRegComment } from "react-icons/fa";
 import { FiSend } from "react-icons/fi";
 import { EditTextForm } from "components/EditTextForm";
 import { toast } from "react-hot-toast";
+import { InstagramStory } from "components/InstagramStory";
 
 export function InstagramCard({ post, userName, setPosts }) {
   const [postsIds, setPostsIds] = useState([]);
@@ -51,15 +52,7 @@ export function InstagramCard({ post, userName, setPosts }) {
       <div className="border-2 w-11/12 md:w-6/12 rounded-xl bg-white">
         <div className="flex items-center justify-between p-2 pr-4 border-b-2">
           <div className="flex items-center gap-2">
-            <div className="rounded-3xl bg-gradient-to-r p-[2px] from-[#8a3ab9] to-[#fbad50]">
-              <div className="h-full bg-white text-white rounded-3xl p-[1px]">
-                <img
-                  className="w-[32px] h-[32px] rounded-3xl"
-                  src="https://firebasestorage.googleapis.com/v0/b/instagram-clone-6bd64.appspot.com/o/WhatsApp%20Image%202022-07-04%20at%2012.40.51%20PM.jpeg-1662134350288?alt=media&token=f62cf9bd-b5bf-44c2-9dc4-4fa0a4a84a17"
-                  alt="Profile"
-                />
-              </div>
-            </div>
+            <InstagramStory width="w-[32px]" height="h-[32px]" src="https://firebasestorage.googleapis.com/v0/b/instagram-clone-6bd64.appspot.com/o/WhatsApp%20Image%202022-07-04%20at%2012.40.51%20PM.jpeg-1662134350288?alt=media&token=f62cf9bd-b5bf-44c2-9dc4-4fa0a4a84a17" />
 
             <div className="font-medium">{userName}</div>
           </div>

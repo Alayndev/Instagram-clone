@@ -17,7 +17,7 @@ const Home: NextPage = ({ data }: any) => {
             <InstagramCard
               post={post}
               key={post.id}
-              userName="Claudio López"
+              userName="gonzaricci"
               setPosts={setPosts}
             />
           );
@@ -60,7 +60,6 @@ export async function getStaticProps(context: NextPageContext) {
   // await createInitialPosts();
 
   const data = await getAllPosts();
-  console.log("getStaticProps ~ data", data);
 
   return {
     props: { data }, // will be passed to the page component as props
