@@ -1,10 +1,11 @@
-import type { NextPage, NextPageContext } from "next";
+import type { NextPage, NextPageContext, InferGetStaticPropsType } from "next";
 import { Header } from "components/Header";
 import { InstagramCard } from "components/InstagramCard";
 import { useState } from "react";
 import { getAllPosts, createNewPost } from "lib/api";
+import { PostType } from "lib/types";
 
-const Home: NextPage = ({ data }: any) => {
+const Home: NextPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [posts, setPosts] = useState(data);
 
   return (

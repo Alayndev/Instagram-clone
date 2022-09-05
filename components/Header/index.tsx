@@ -17,6 +17,7 @@ import { createNewPost, getAllPosts } from "lib/api";
 import { toast } from "react-hot-toast";
 import { InstagramStory } from "components/InstagramStory";
 import stories from "stories.json";
+import { CreatePostType } from "lib/types";
 
 // Todo: CreateImagePostForm (Modal) - CreateVideoPostForm - Headless Tabs (por accesibilidad)
 export function Header({ setPosts }) {
@@ -51,7 +52,7 @@ export function Header({ setPosts }) {
     resolver: yupResolver(schema),
   });
 
-  const onCreatePost = async (data) => {
+  const onCreatePost = async (data: CreatePostType) => {
     await createNewPost(data);
 
     const posts = await getAllPosts();

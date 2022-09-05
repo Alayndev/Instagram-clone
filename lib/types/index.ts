@@ -4,17 +4,28 @@ import { FieldValues, UseFormRegister } from "react-hook-form";
 export interface PostType {
   image: string;
   texto: string;
-  likes: number;
+  likes?: number;
+  isVideo?: boolean;
+  id: string;
 }
 
 export interface CreatePostType {
   image: string;
   texto?: string;
+  isVideo?: boolean;
 }
 
 export type PostCreatedRes = {
   created: boolean;
   postId: string;
+};
+
+export type UpdateTextType = {
+  texto: string;
+};
+
+export type UpdatedRes = {
+  updated: boolean;
 };
 
 export interface InputProps {

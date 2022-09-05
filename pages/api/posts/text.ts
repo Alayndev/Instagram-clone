@@ -1,8 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import methods from "micro-method-router";
-import { validateQuery, validateBody } from "lib/middlewares/schemasMiddlewares";
+import {
+  validateQuery,
+  validateBody,
+} from "lib/middlewares/schemasMiddlewares";
 import * as yup from "yup";
 import { updatePostText } from "controllers/post";
+import { UpdatedRes } from "lib/types";
 
 let querySchema = yup
   .object()
@@ -22,7 +26,10 @@ let bodySchema = yup
 
 async function updateText(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const postUpdated = await updatePostText(req.query.postId as string, req.body.texto);
+    const postUpdated: UpdatedRes = await updatePostText(
+      req.query.postId as string,
+      req.body.texto
+    );
 
     res.status(200).json(postUpdated);
   } catch (error) {

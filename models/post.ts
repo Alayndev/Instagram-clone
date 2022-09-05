@@ -1,3 +1,4 @@
+import type { AddPrefixToKeys, DocumentData } from "firebase/firestore";
 import { firestore } from "lib/connections/firebase/admin";
 
 const collection = firestore.collection("posts");
@@ -7,7 +8,7 @@ import { PostType, CreatePostType, PostCreatedRes } from "lib/types";
 class Post {
   ref: FirebaseFirestore.DocumentReference;
 
-  data: any;
+  data: PostType | DocumentData;
 
   id: string;
 
@@ -29,7 +30,7 @@ class Post {
   }
 
   pushOrder() {
-    this.ref.update(this.data);
+    this.ref.update(this.data as AddPrefixToKeys<string, any>);
   }
 
   static async createNewPost(data: CreatePostType): Promise<PostCreatedRes> {

@@ -1,17 +1,18 @@
 import axios from "axios";
+import { CreatePostType, UpdateTextType, PostType } from "./types";
 
-export const getAllPosts = async () => {
+export const getAllPosts = async (): Promise<PostType[]> => {
   try {
     const { data } = await axios.get("http://localhost:3000/api/posts");
 
     return data;
   } catch (error) {
     console.error(error);
-    return false;
+    return [];
   }
 };
 
-export const createNewPost = async (body) => {
+export const createNewPost = async (body: CreatePostType): Promise<boolean> => {
   try {
     const { data } = await axios.post("http://localhost:3000/api/posts", body, {
       headers: {
@@ -30,7 +31,7 @@ export const createNewPost = async (body) => {
   }
 };
 
-export const updatePostLikes = async (postId: string) => {
+export const updatePostLikes = async (postId: string): Promise<boolean> => {
   try {
     const { data } = await axios.patch("/api/posts/likes?postId=" + postId);
 
@@ -45,7 +46,10 @@ export const updatePostLikes = async (postId: string) => {
   }
 };
 
-export const updatePostText = async (postId: string, body) => {
+export const updatePostText = async (
+  postId: string,
+  body: UpdateTextType
+): Promise<boolean> => {
   try {
     const { data } = await axios.patch(
       "/api/posts/text?postId=" + postId,

@@ -1,5 +1,10 @@
 import { Post } from "models/post";
-import { PostType, CreatePostType, PostCreatedRes } from "lib/types";
+import {
+  PostType,
+  CreatePostType,
+  PostCreatedRes,
+  UpdatedRes,
+} from "lib/types";
 
 export async function getAllPosts(): Promise<PostType[]> {
   const initialPosts: PostType[] = await Post.getAllPosts();
@@ -15,7 +20,7 @@ export async function createNewPost(
   return postCreated;
 }
 
-export async function updatePostLikes(postId: string) {
+export async function updatePostLikes(postId: string): Promise<UpdatedRes> {
   const postRef = new Post(postId);
   await postRef.pullOrder();
 
@@ -26,7 +31,10 @@ export async function updatePostLikes(postId: string) {
   return { updated: true };
 }
 
-export async function updatePostText(postId: string, text: string) {
+export async function updatePostText(
+  postId: string,
+  text: string
+): Promise<UpdatedRes> {
   const postRef = new Post(postId);
   await postRef.pullOrder();
 

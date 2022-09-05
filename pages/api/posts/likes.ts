@@ -3,6 +3,7 @@ import methods from "micro-method-router";
 import { validateQuery } from "lib/middlewares/schemasMiddlewares";
 import * as yup from "yup";
 import { updatePostLikes } from "controllers/post";
+import { UpdatedRes } from "lib/types";
 
 let querySchema = yup
   .object()
@@ -14,7 +15,7 @@ let querySchema = yup
 
 async function updateLikes(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const postUpdated = await updatePostLikes(req.query.postId as string);
+    const postUpdated: UpdatedRes = await updatePostLikes(req.query.postId as string);
 
     res.status(200).json(postUpdated);
   } catch (error) {
