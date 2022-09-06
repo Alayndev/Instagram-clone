@@ -69,7 +69,7 @@ export function InstagramCard({ post, userName, setPosts }) {
 
         <div className="flex justify-center">
           {post.isVideo ? (
-            <video controls muted autoPlay>
+            <video controls muted autoPlay className="h-[350px] w-full m-0">
               <source src={post.image} />
             </video>
           ) : (
