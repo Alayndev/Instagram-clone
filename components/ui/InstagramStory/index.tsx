@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 
-// Close fiends: #6dc993
 export function InstagramStory(props: any) {
   return (
     <>

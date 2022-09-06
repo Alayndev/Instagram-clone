@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 
 import { motion } from "framer-motion";
-import Portal from "../portal/Portal";
+import Portal from "../Portal";
 
 export const Modal = (props: any) => {
   const modal = useRef(null);

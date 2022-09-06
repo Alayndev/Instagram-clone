@@ -7,7 +7,7 @@ import { FaRegComment } from "react-icons/fa";
 import { FiSend } from "react-icons/fi";
 import { EditTextForm } from "components/EditTextForm";
 import { toast } from "react-hot-toast";
-import { InstagramStory } from "components/InstagramStory";
+import { InstagramStory } from "components/ui/InstagramStory";
 
 export function InstagramCard({ post, userName, setPosts }) {
   const [postsIds, setPostsIds] = useState([]);

@@ -39,7 +39,7 @@ export interface InputProps {
 }
 
 export interface ButtonProps {
-  onClick: MouseEventHandler<HTMLButtonElement>;
-  className: string;
-  children: ReactNode;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  className?: string;
+  text: string;
 }

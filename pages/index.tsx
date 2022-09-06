@@ -3,7 +3,6 @@ import { Header } from "components/Header";
 import { InstagramCard } from "components/InstagramCard";
 import { useState } from "react";
 import { getAllPosts, createNewPost } from "lib/api";
-import { PostType } from "lib/types";
 
 const Home: NextPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [posts, setPosts] = useState(data);

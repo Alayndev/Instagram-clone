@@ -1,4 +1,4 @@
-import { Modal } from "components/ui/modal/Modal";
+import { Modal } from "components/ui/Modal";
 import { Input } from "components/ui/Input";
 import { useForm } from "react-hook-form";
 import { object, string } from "yup";
@@ -16,8 +16,6 @@ export function EditTextForm({ setEditText, post, setPosts }) {
   const {
     register,
     handleSubmit,
-    setValue,
-    watch,
     reset,
     formState: { errors },
   } = useForm({
