@@ -49,10 +49,14 @@ export function InstagramCard({ post, userName, setPosts }) {
 
   return (
     <>
-      <div className="border-2 w-11/12 md:w-6/12 rounded-xl bg-white">
+      <div className="border-2 w-11/12 max-w-[450px] rounded-xl bg-white">
         <div className="flex items-center justify-between p-2 pr-4 border-b-2">
           <div className="flex items-center gap-2">
-            <InstagramStory width="w-[32px]" height="h-[32px]" src="https://firebasestorage.googleapis.com/v0/b/instagram-clone-6bd64.appspot.com/o/WhatsApp%20Image%202022-07-04%20at%2012.40.51%20PM.jpeg-1662134350288?alt=media&token=f62cf9bd-b5bf-44c2-9dc4-4fa0a4a84a17" />
+            <InstagramStory
+              width="w-[32px]"
+              height="h-[32px]"
+              src="https://firebasestorage.googleapis.com/v0/b/instagram-clone-6bd64.appspot.com/o/WhatsApp%20Image%202022-07-04%20at%2012.40.51%20PM.jpeg-1662134350288?alt=media&token=f62cf9bd-b5bf-44c2-9dc4-4fa0a4a84a17"
+            />
 
             <div className="font-medium">{userName}</div>
           </div>
@@ -63,13 +67,17 @@ export function InstagramCard({ post, userName, setPosts }) {
           />
         </div>
 
-        <div className="flex justify-center w-full">
+        <div className="flex justify-center">
           {post.isVideo ? (
-            <video controls muted autoPlay width={300} height={400}>
+            <video controls muted autoPlay>
               <source src={post.image} />
             </video>
           ) : (
-            <img src={post.image} alt="Post image" width={300} height={400} />
+            <img
+              src={post.image}
+              alt="Post image"
+              className="h-[350px] w-full m-0"
+            />
           )}
         </div>
 

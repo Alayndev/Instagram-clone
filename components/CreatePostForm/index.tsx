@@ -76,7 +76,7 @@ export function CreatePostForm({ setPosts, setIsOpen }: any) {
               onClick={closeModal}
             />
 
-            <p className="font-bold">Nueva publicación</p>
+            <p className="text-[#000] font-bold">Nueva publicación</p>
 
             <AiOutlineArrowRight fill="#458eff" className="w-6 h-6" />
           </div>
@@ -92,13 +92,13 @@ export function CreatePostForm({ setPosts, setIsOpen }: any) {
                     className="w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700
                   ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
                   >
-                    <button type="button">Subir imagen </button>
+                    Subir imagen
                   </Tab>
                   <Tab
                     className="w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700
                   ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
                   >
-                    <button type="button">Subir video </button>
+                    Subir video
                   </Tab>
                 </Tab.List>
 

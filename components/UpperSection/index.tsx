@@ -9,7 +9,7 @@ import { InstagramStory } from "components/ui/InstagramStory";
 import stories from "stories.json";
 import { CreatePostForm } from "components/CreatePostForm";
 
-export function Header({ setPosts }) {
+export function UpperSection({ setPosts }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {

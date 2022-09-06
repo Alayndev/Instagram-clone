@@ -1,15 +1,18 @@
 import type { NextPage, NextPageContext, InferGetStaticPropsType } from "next";
-import { Header } from "components/Header";
+import { UpperSection } from "components/UpperSection";
 import { InstagramCard } from "components/InstagramCard";
 import { useState } from "react";
 import { getAllPosts, createNewPost } from "lib/api";
+import { BottomSection } from "components/BottomSection";
 
-const Home: NextPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Home: NextPage = ({
+  data,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [posts, setPosts] = useState(data);
 
   return (
     <>
-      <Header setPosts={setPosts} />
+      <UpperSection setPosts={setPosts} />
 
       <div className="flex flex-col gap-5 justify-center items-center py-5">
         {posts.map((post: any) => {
@@ -23,6 +26,8 @@ const Home: NextPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>
           );
         })}
       </div>
+
+      <BottomSection />
     </>
   );
 };

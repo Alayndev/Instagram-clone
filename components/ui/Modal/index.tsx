@@ -9,7 +9,7 @@ export const Modal = (props: any) => {
   return (
     <Portal>
       <motion.div
-        className="h-3/4 md:h-screen w-screen fixed top-0 left-0 z-50 bg-gray-blur  backdrop-blur-sm flex justify-center items-center"
+        className="h-3/4 md:h-screen w-screen fixed top-0 left-0 z-50 backdrop-blur-sm flex justify-center items-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}

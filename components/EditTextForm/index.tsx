@@ -5,6 +5,7 @@ import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { updatePostText, getAllPosts } from "lib/api";
 import { toast } from "react-hot-toast";
+import { PrimaryButton, CancelButton } from "components/ui/buttons";
 
 export function EditTextForm({ setEditText, post, setPosts }) {
   const schema = object().shape({
@@ -54,7 +55,7 @@ export function EditTextForm({ setEditText, post, setPosts }) {
   return (
     <Modal>
       <div className="flex flex-col gap-5">
-        <h3>Editar texto de la publicación</h3>
+        <h3 className="text-[#000] font-bold">Editar texto de la publicación</h3>
 
         <form>
           <Input
@@ -71,10 +72,13 @@ export function EditTextForm({ setEditText, post, setPosts }) {
             </small>
           )}
 
-          <div className="flex justify-between">
-            <button onClick={closeModal}>Cancelar</button>
+          <div className="flex justify-between mt-5">
+            <CancelButton text="Cancelar" onClick={closeModal} />
 
-            <button onClick={handleSubmit(editPost)}>Editar texto</button>
+            <PrimaryButton
+              onClick={handleSubmit(editPost)}
+              text="Editar texto"
+            />
           </div>
         </form>
       </div>
