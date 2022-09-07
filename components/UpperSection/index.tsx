@@ -45,8 +45,6 @@ export function UpperSection({ setPosts }) {
           {stories.map((story) => {
             return (
               <InstagramStory
-                width="w-[40px]"
-                height="h-[40px]"
                 key={story.id}
                 userName={story.userName}
                 src={story.src}
