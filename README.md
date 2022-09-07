@@ -1,8 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
 
-First, run the development server:
+First, clone the repository:
+
+```bash
+git clone git@github.com:Alayndev/Instagram-clone.git
+```
+You now have a new directory called 'Instagram-clone'. Let’s 'cd' into it:
+
+```bash
+cd /Instagram-clone
+```
+
+Install dependencies:
+
+```bash
+npm install
+# or
+yarn
+```
+
+Create a file called .env.local and inject the environment variables from .env.template into it:
+
+```bash
+.env.template --> .env.local
+```
+
+Run the development server:
 
 ```bash
 npm run dev
@@ -12,23 +35,61 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Build experience
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+In order to generate an optimized version of the application for production and test the performance achieved by using SSG (Static Site Generation), follow these steps:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Run the development server:
 
-## Learn More
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open a new tab in your terminal and build your application:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+# or
+yarn build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Cut the development server:
 
-## Deploy on Vercel
+```bash
+Control + c
+# or
+⌘ + c
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Start the Node.js server. This server supports all features of Next.js.:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+npm run start
+# or
+yarn start
+```
+
+In this way, the HTML is generated at build time and will be reused on each request.It is important to mention that due to SSG, when you run the development server, you are building and generating the HTML. That is why it may take some time.
+
+
+## Tech Stack and concepts applied
+
+- Next
+- React
+- Node
+- TypeScript
+- Tailwind
+- Axios
+- React Hook Form
+- Dropzone
+- Yup
+- Firebase
+- API REST
+- MVC
+- OOP
+- Env Vars
+- SSG (Static Site Generation)
+- Lazy Loading
+- Eslint
