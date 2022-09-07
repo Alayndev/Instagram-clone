@@ -11,24 +11,26 @@ const Home: NextPage = ({
   const [posts, setPosts] = useState(data);
 
   return (
-    <>
+    <div className="h-[100vh] flex flex-col">
       <UpperSection setPosts={setPosts} />
 
-      <div className="flex flex-col gap-5 justify-center items-center py-5">
-        {posts.map((post: any) => {
-          return (
-            <InstagramCard
-              post={post}
-              key={post.id}
-              userName="gonzaricci"
-              setPosts={setPosts}
-            />
-          );
-        })}
-      </div>
+      <main className="grow overflow-scroll no-scrollbar">
+        <div className="flex flex-col gap-5 justify-center items-center py-5">
+          {posts.map((post: any) => {
+            return (
+              <InstagramCard
+                post={post}
+                key={post.id}
+                userName="gonzaricci"
+                setPosts={setPosts}
+              />
+            );
+          })}
+        </div>
+      </main>
 
       <BottomSection />
-    </>
+    </div>
   );
 };
 
