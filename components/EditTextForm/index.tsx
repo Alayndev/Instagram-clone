@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { updatePostText, getPostById } from "lib/api";
 import { toast } from "react-hot-toast";
 import { PrimaryButton, CancelButton } from "components/ui/buttons";
-import { EditTextFormProps } from "lib/types";
+import { EditTextFormProps, PostType } from "lib/types";
 
 export function EditTextForm({
   setEditText,
@@ -42,7 +42,7 @@ export function EditTextForm({
 
     const postNewData = await getPostById(post.id);
 
-    setPosts((prevState: any): any => {
+    setPosts((prevState: PostType[]): PostType[] => {
       prevState.splice(postIndex, 1, postNewData);
 
       return [...prevState];

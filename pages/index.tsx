@@ -4,6 +4,7 @@ import { InstagramCard } from "components/InstagramCard";
 import { useState } from "react";
 import { getAllPosts, createNewPost } from "lib/api";
 import { BottomSection } from "components/BottomSection";
+import { PostType } from "lib/types";
 
 const Home: NextPage = ({
   data,
@@ -16,7 +17,7 @@ const Home: NextPage = ({
 
       <main className="grow overflow-scroll no-scrollbar">
         <div className="flex flex-col gap-5 justify-center items-center py-5">
-          {posts.map((post: any) => {
+          {posts.map((post: PostType) => {
             return (
               <InstagramCard
                 post={post}

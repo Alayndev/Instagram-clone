@@ -44,7 +44,7 @@ class Post {
 
     const initialPosts: PostType[] = [];
 
-    snapshot.forEach((doc: any) => {
+    snapshot.forEach((doc: DocumentData) => {
       const post: PostType = { ...doc.data(), id: doc.id };
 
       initialPosts.push(post);

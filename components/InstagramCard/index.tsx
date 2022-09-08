@@ -8,7 +8,7 @@ import { EditTextForm } from "components/EditTextForm";
 import { toast } from "react-hot-toast";
 import { InstagramStory } from "components/ui/InstagramStory";
 import { ShowImage } from "components/ui/ShowImage";
-import { InstagramCardProps } from "lib/types";
+import { InstagramCardProps, PostType } from "lib/types";
 
 export function InstagramCard({
   post,
@@ -38,7 +38,7 @@ export function InstagramCard({
 
     const postNewData = await getPostById(postId);
 
-    setPosts((prevState: any): any => {
+    setPosts((prevState: PostType[]): PostType[] => {
       prevState.splice(postIndex, 1, postNewData);
 
       return [...prevState];

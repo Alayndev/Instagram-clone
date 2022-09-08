@@ -8,7 +8,7 @@ import { boolean, object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createNewPost, getPostById } from "lib/api";
 import { toast } from "react-hot-toast";
-import { CreatePostType, CreatePostFormProps } from "lib/types";
+import { CreatePostType, CreatePostFormProps, PostType } from "lib/types";
 import { PrimaryButton } from "components/ui/buttons";
 import { Tab } from "@headlessui/react";
 
@@ -43,7 +43,7 @@ export function CreatePostForm({ setPosts, setIsOpen }: CreatePostFormProps) {
 
     const postNewData = await getPostById(newPost.postId);
 
-    setPosts((prevState: any[]): any => {
+    setPosts((prevState: PostType[]): PostType[] => {
       prevState.unshift(postNewData);
 
       return [...prevState];
