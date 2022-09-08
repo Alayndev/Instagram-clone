@@ -20,6 +20,7 @@ const Home: NextPage = ({
             return (
               <InstagramCard
                 post={post}
+                posts={posts}
                 key={post.id}
                 userName="gonzaricci"
                 setPosts={setPosts}

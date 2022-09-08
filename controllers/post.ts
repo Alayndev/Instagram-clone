@@ -5,11 +5,21 @@ import {
   PostCreatedRes,
   UpdatedRes,
 } from "lib/types";
+import type { DocumentData } from "firebase/firestore";
 
 export async function getAllPosts(): Promise<PostType[]> {
   const initialPosts: PostType[] = await Post.getAllPosts();
 
   return initialPosts;
+}
+
+export async function getPostById(
+  postId: string
+): Promise<PostType | DocumentData> {
+  const postRef = new Post(postId);
+  await postRef.pullOrder();
+
+  return postRef.data;
 }
 
 export async function createNewPost(

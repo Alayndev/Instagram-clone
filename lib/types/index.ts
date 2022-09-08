@@ -52,6 +52,7 @@ export interface ButtonProps {
 }
 export interface InstagramCardProps {
   post: PostType;
+  posts: PostType[];
   userName: string;
   setPosts: Dispatch<SetStateAction<PostType[]>>;
 }
@@ -63,6 +64,7 @@ export interface CreatePostFormProps {
 export interface EditTextFormProps {
   setEditText: Dispatch<SetStateAction<boolean>>;
   post: PostType;
+  posts: PostType[];
   setPosts: Dispatch<SetStateAction<PostType[]>>;
 }
 

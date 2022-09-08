@@ -21,7 +21,7 @@ class Post {
     const snapshot = await this.ref.get();
 
     if (snapshot.exists) {
-      this.data = snapshot.data();
+      this.data = { ...snapshot.data(), id: snapshot.id };
 
       return this.data;
     } else {

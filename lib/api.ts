@@ -12,7 +12,7 @@ export const getAllPosts = async (): Promise<PostType[]> => {
   }
 };
 
-export const createNewPost = async (body: CreatePostType): Promise<boolean> => {
+export const createNewPost = async (body: CreatePostType): Promise<any> => {
   try {
     const { data } = await axios.post("http://localhost:3000/api/posts", body, {
       headers: {
@@ -20,11 +20,7 @@ export const createNewPost = async (body: CreatePostType): Promise<boolean> => {
       },
     });
 
-    if (data.created === true) {
-      return true;
-    } else {
-      return false;
-    }
+    return data;
   } catch (error) {
     console.error(error);
     return false;
@@ -64,5 +60,16 @@ export const updatePostText = async (
   } catch (error) {
     console.error(error);
     return false;
+  }
+};
+
+export const getPostById = async (postId: string): Promise<PostType> => {
+  try {
+    const { data } = await axios.get("/api/posts/" + postId);
+
+    return data;
+  } catch (error) {
+    console.error(error);
+    return undefined;
   }
 };

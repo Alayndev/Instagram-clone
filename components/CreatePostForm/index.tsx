@@ -6,7 +6,7 @@ import { Input } from "components/ui/Input";
 import { useForm } from "react-hook-form";
 import { boolean, object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { createNewPost, getAllPosts } from "lib/api";
+import { createNewPost, getPostById } from "lib/api";
 import { toast } from "react-hot-toast";
 import { CreatePostType, CreatePostFormProps } from "lib/types";
 import { PrimaryButton } from "components/ui/buttons";
@@ -39,10 +39,15 @@ export function CreatePostForm({ setPosts, setIsOpen }: CreatePostFormProps) {
   });
 
   const onCreatePost = async (data: CreatePostType) => {
-    await createNewPost(data);
+    const newPost = await createNewPost(data);
 
-    const posts = await getAllPosts();
-    setPosts(posts);
+    const postNewData = await getPostById(newPost.postId);
+
+    setPosts((prevState: any[]): any => {
+      prevState.unshift(postNewData);
+
+      return [...prevState];
+    });
 
     closeModal();
   };

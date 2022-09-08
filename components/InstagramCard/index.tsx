@@ -1,5 +1,5 @@
-import { updatePostLikes, getAllPosts } from "lib/api";
-import { useState, useEffect } from "react";
+import { updatePostLikes, getPostById } from "lib/api";
+import { useState } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { BsThreeDots } from "react-icons/bs";
 import { FaRegComment } from "react-icons/fa";
@@ -10,7 +10,12 @@ import { InstagramStory } from "components/ui/InstagramStory";
 import { ShowImage } from "components/ui/ShowImage";
 import { InstagramCardProps } from "lib/types";
 
-export function InstagramCard({ post, userName, setPosts }: InstagramCardProps) {
+export function InstagramCard({
+  post,
+  posts,
+  userName,
+  setPosts,
+}: InstagramCardProps) {
   const [postsIds, setPostsIds] = useState([]);
   const [postLiked, setPostLiked] = useState(false);
 
@@ -29,8 +34,15 @@ export function InstagramCard({ post, userName, setPosts }: InstagramCardProps) 
       return [...prevState, postId];
     });
 
-    const posts = await getAllPosts();
-    setPosts(posts);
+    const postIndex = posts.findIndex((post) => post.id === postId);
+
+    const postNewData = await getPostById(postId);
+
+    setPosts((prevState: any): any => {
+      prevState.splice(postIndex, 1, postNewData);
+
+      return [...prevState];
+    });
   };
 
   const updateLikes = async (postId: string) => {
@@ -107,8 +119,12 @@ export function InstagramCard({ post, userName, setPosts }: InstagramCardProps) 
             {post.likes && <span>{post.likes} Me gusta</span>}
           </div>
 
-          <div className="break-all">
-            <span className="font-medium">{userName}</span> {post.texto}
+          <div className="break-words">
+            {post.texto && (
+              <span>
+                <span className="font-medium">{userName}</span> {post.texto}
+              </span>
+            )}
           </div>
         </div>
       </div>
@@ -117,6 +133,7 @@ export function InstagramCard({ post, userName, setPosts }: InstagramCardProps) 
         <EditTextForm
           setEditText={setEditText}
           post={selectedPost}
+          posts={posts}
           setPosts={setPosts}
         />
       )}
