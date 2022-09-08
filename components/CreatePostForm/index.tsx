@@ -8,11 +8,11 @@ import { boolean, object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createNewPost, getAllPosts } from "lib/api";
 import { toast } from "react-hot-toast";
-import { CreatePostType } from "lib/types";
+import { CreatePostType, CreatePostFormProps } from "lib/types";
 import { PrimaryButton } from "components/ui/buttons";
 import { Tab } from "@headlessui/react";
 
-export function CreatePostForm({ setPosts, setIsOpen }: any) {
+export function CreatePostForm({ setPosts, setIsOpen }: CreatePostFormProps) {
   const closeModal = () => {
     setIsOpen(false);
     reset();

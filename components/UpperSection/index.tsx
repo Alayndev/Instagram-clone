@@ -9,8 +9,9 @@ import { InstagramStory } from "components/ui/InstagramStory";
 import stories from "stories.json";
 import { CreatePostForm } from "components/CreatePostForm";
 import { InstagramIcon } from "icons";
+import { UpperSectionProps } from "lib/types";
 
-export function UpperSection({ setPosts }) {
+export function UpperSection({ setPosts }: UpperSectionProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {

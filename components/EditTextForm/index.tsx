@@ -6,8 +6,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { updatePostText, getAllPosts } from "lib/api";
 import { toast } from "react-hot-toast";
 import { PrimaryButton, CancelButton } from "components/ui/buttons";
+import { EditTextFormProps } from "lib/types";
 
-export function EditTextForm({ setEditText, post, setPosts }) {
+export function EditTextForm({ setEditText, post, setPosts }: EditTextFormProps) {
   const schema = object().shape({
     texto: string().required(
       "Debe ingresar la nueva descripción de la publicación."

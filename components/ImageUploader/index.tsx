@@ -1,10 +1,11 @@
-/* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import useFiles from "hooks/useStorage";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { getDownloadURL } from "firebase/storage";
 import { ImageLoader } from "components/ui/loaders";
+import { ShowImage } from "components/ui/ShowImage";
+import { ImageUploaderProps } from "lib/types";
 
 export function ImageUploader({
   id,
@@ -14,7 +15,7 @@ export function ImageUploader({
   value,
   readOnly,
   dataType,
-}: any) {
+}: ImageUploaderProps) {
   const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const { uploadFile } = useFiles();
@@ -71,10 +72,8 @@ export function ImageUploader({
   });
 
   useEffect(() => {
-    // setValue(id, value || "");
-
     if (value) {
-      setUrl(value.src);
+      setUrl(value);
     }
   }, [register, setValue, id, value]);
 
@@ -91,7 +90,7 @@ export function ImageUploader({
         {url ? (
           <div className="flex flex-col gap-2">
             {dataType === "image" ? (
-              <img
+              <ShowImage
                 alt="Avatar"
                 src={url}
                 className="object-cover w-40 h-40 m-0"

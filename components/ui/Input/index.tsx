@@ -1,7 +1,7 @@
 import React from "react";
 import { InputProps } from "lib/types";
 
-export const Input = (props: any) => {
+export const Input = (props: InputProps) => {
   return (
     <span className="relative">
       <input

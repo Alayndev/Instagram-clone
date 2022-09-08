@@ -1,6 +1,7 @@
 import { ShowImage } from "../ShowImage";
+import { InstagramStoryProps } from "lib/types";
 
-export function InstagramStory(props: any) {
+export function InstagramStory(props: InstagramStoryProps) {
   return (
     <>
       <div className={`flex flex-col gap-1 items-center justify-center`}>
