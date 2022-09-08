@@ -91,6 +91,11 @@ Controller: Controllers are in charge of the business logic of the application, 
 
 <br/>
 
+## Postman Collection:
+
+[Instagram clone - API REST Docs](https://documenter.getpostman.com/view/17990146/VVBZPiWp)
+
+<br/>
 
 ## Frontend architecture: [Atomic design](https://bradfrost.com/blog/post/atomic-web-design/)
 
