@@ -26,7 +26,7 @@ export default function useStorage() {
   }, []);
 
   const uploadFile = (folder, file, fileName) => {
-    const filesRef = ref(storage, `${fileName}`);
+    const filesRef = ref(storage, `${folder}/${fileName}`);
 
     const task = uploadBytesResumable(filesRef, file);
 
