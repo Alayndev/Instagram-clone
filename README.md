@@ -50,7 +50,7 @@ npm run dev
 yarn dev
 ```
 
-Open a new tab in your terminal and build your application:
+Open a new tab on your terminal and build the application (twice if the first one fails):
 
 ```bash
 npm run build
@@ -74,7 +74,11 @@ npm run start
 yarn start
 ```
 
-In this way, the HTML is generated at build time and will be reused on each request.It is important to mention that due to SSG, when you run the development server, you are building and generating the HTML. That is why it may take some time.
+In this way, the HTML is generated at build time and will be reused on each request. 
+
+If the build fails at the step 'Generating static pages' with an error similar to 'PageNotFoundError: Cannot find module for page: /', build the application again with the development server running.
+
+It is important to mention that due to SSG, when you run the development server, you are building and generating the HTML. That is why it may take some time.
 
 <br/>
 
