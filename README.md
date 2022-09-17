@@ -8,7 +8,7 @@ git clone git@github.com:Alayndev/Instagram-clone.git
 You now have a new directory called 'Instagram-clone'. Let’s 'cd' into it:
 
 ```bash
-cd /Instagram-clone
+cd Instagram-clone/
 ```
 
 Install dependencies:
