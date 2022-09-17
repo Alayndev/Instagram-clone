@@ -1,7 +1,7 @@
 import axios from "axios";
 import { CreatePostType, UpdateTextType, PostType } from "./types";
 
-const PROD_URL = "https://instagram-clone-liart-alpha.vercel.app/";
+const PROD_URL = "https://instagram-clone-liart-alpha.vercel.app";
 
 export const getAllPosts = async (): Promise<PostType[]> => {
   try {
