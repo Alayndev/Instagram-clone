@@ -1,9 +1,11 @@
 import axios from "axios";
 import { CreatePostType, UpdateTextType, PostType } from "./types";
 
+const PROD_URL = "https://instagram-clone-alayndev.vercel.app";
+
 export const getAllPosts = async (): Promise<PostType[]> => {
   try {
-    const { data } = await axios.get("http://localhost:3000/api/posts");
+    const { data } = await axios.get(PROD_URL + "/api/posts");
 
     return data;
   } catch (error) {
@@ -14,7 +16,7 @@ export const getAllPosts = async (): Promise<PostType[]> => {
 
 export const createNewPost = async (body: CreatePostType): Promise<any> => {
   try {
-    const { data } = await axios.post("http://localhost:3000/api/posts", body, {
+    const { data } = await axios.post(PROD_URL + "/api/posts", body, {
       headers: {
         "content-type": "application/json",
       },
