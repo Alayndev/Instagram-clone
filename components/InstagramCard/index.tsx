@@ -1,4 +1,4 @@
-import { updatePostLikes, getPostById } from "lib/api";
+import { updatePostLikes, getPostById, deletePostById } from "lib/api";
 import { useState } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { BsThreeDots } from "react-icons/bs";
@@ -9,7 +9,11 @@ import { toast } from "react-hot-toast";
 import { InstagramStory } from "components/ui/InstagramStory";
 import { ShowImage } from "components/ui/ShowImage";
 import { InstagramCardProps, PostType } from "lib/types";
+import { Modal } from "components/ui/Modal";
+import { PrimaryButton } from "components/ui/buttons";
+import { ConfirmModal } from "components/ui/ConfirmModal/confirm-modal";
 
+// Todo: Componentizar flujo delete para que quede limpio InstagramCard
 export function InstagramCard({
   post,
   posts,
@@ -18,8 +22,12 @@ export function InstagramCard({
 }: InstagramCardProps) {
   const [postsIds, setPostsIds] = useState([]);
   const [postLiked, setPostLiked] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
+  const [deletePost, setDeletePost] = useState(false);
   const [editText, setEditText] = useState(false);
+
+  // Todo: Resetearlo en cerrar y cancelar
   const [selectedPost, setSelectedPost] = useState({
     image: "",
     texto: "",
@@ -59,9 +67,47 @@ export function InstagramCard({
     }
   };
 
-  const openEditModal = (post) => {
-    setEditText(true);
+  const onDeletePost = async (postId: string) => {
+    await deletePostById(postId);
+
+    const postIndex = posts.findIndex((post) => post.id === postId);
+
+    setPosts((prevState: PostType[]): PostType[] => {
+      prevState.splice(postIndex, 1);
+
+      return [...prevState];
+    });
+
+    setDeletePost(false);
+  };
+
+  const deletePostConfirmed = async (postId) => {
+    try {
+      await toast.promise(onDeletePost(postId), {
+        loading: "Eliminando publicación...",
+        success: (res) => {
+          return `Publicación eliminada correctamente`;
+        },
+        error: (err) => `${err.toString()}`,
+      });
+    } catch (error) {
+      toast.error(`Ha ocurrido un error: ${error}`);
+    }
+  };
+
+  const openModal = (post) => {
+    setIsOpen(true);
     setSelectedPost(post);
+  };
+
+  const openEditModal = () => {
+    setIsOpen(false);
+    setEditText(true);
+  };
+
+  const openDeleteModal = () => {
+    setIsOpen(false);
+    setDeletePost(true);
   };
 
   return (
@@ -76,7 +122,7 @@ export function InstagramCard({
 
           <BsThreeDots
             className="cursor-pointer"
-            onClick={() => openEditModal(post)}
+            onClick={() => openModal(post)}
           />
         </div>
 
@@ -128,6 +174,34 @@ export function InstagramCard({
           </div>
         </div>
       </div>
+
+      {isOpen && (
+        <Modal>
+          <div className="flex flex-col items-center gap-5 w-48">
+            <div onClick={openEditModal} className="cursor-pointer">
+              Editar
+            </div>
+
+            <div onClick={openDeleteModal} className="cursor-pointer">
+              Eliminar
+            </div>
+
+            <PrimaryButton
+              className="w-full"
+              text="Cerrar"
+              onClick={() => setIsOpen(false)}
+            />
+          </div>
+        </Modal>
+      )}
+
+      <ConfirmModal
+        onCancel={() => setDeletePost(false)}
+        onConfirm={() => deletePostConfirmed(selectedPost.id)}
+        showConfirmation={deletePost}
+        title="¿Eliminar publicación?"
+        description="Si deseas eliminar la publicación, aprieta el botón Eliminar."
+      />
 
       {editText && (
         <EditTextForm

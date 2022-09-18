@@ -67,7 +67,6 @@ const createInitialPosts = async () => {
 
 export async function getStaticProps(context: NextPageContext) {
   // Todo: Crearlos con un id, así si ya están creados NO los vuelve a crear
-  // ! Comment this function to disable the functionality of creating 3 posts automatically when starting/building
   // await createInitialPosts();
 
   const data = await getAllPosts();

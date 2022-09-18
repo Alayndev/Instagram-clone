@@ -16,7 +16,7 @@ export const getAllPosts = async (): Promise<PostType[]> => {
 
 export const createNewPost = async (body: CreatePostType): Promise<any> => {
   try {
-    const { data } = await axios.post(PROD_URL + "/api/posts", body, {
+    const { data } = await axios.post("/api/posts", body, {
       headers: {
         "content-type": "application/json",
       },
@@ -68,6 +68,17 @@ export const updatePostText = async (
 export const getPostById = async (postId: string): Promise<PostType> => {
   try {
     const { data } = await axios.get("/api/posts/" + postId);
+
+    return data;
+  } catch (error) {
+    console.error(error);
+    return undefined;
+  }
+};
+
+export const deletePostById = async (postId: string): Promise<PostType> => {
+  try {
+    const { data } = await axios.delete("/api/posts/" + postId);
 
     return data;
   } catch (error) {
