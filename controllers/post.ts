@@ -17,7 +17,7 @@ export async function getPostById(
   postId: string
 ): Promise<PostType | DocumentData> {
   const postRef = new Post(postId);
-  await postRef.pullOrder();
+  await postRef.pullPost();
 
   return postRef.data;
 }
@@ -32,13 +32,13 @@ export async function createNewPost(
 
 export async function updatePostLikes(postId: string): Promise<UpdatedRes> {
   const postRef = new Post(postId);
-  await postRef.pullOrder();
+  await postRef.pullPost();
 
   postRef.data.likes = !postRef.data.likes ? 1 : postRef.data.likes + 1;
 
-  await postRef.pushOrder();
+  const postUpdated = await postRef.pushPost();
 
-  return { updated: true };
+  return postUpdated;
 }
 
 export async function updatePostText(
@@ -46,11 +46,18 @@ export async function updatePostText(
   text: string
 ): Promise<UpdatedRes> {
   const postRef = new Post(postId);
-  await postRef.pullOrder();
+  await postRef.pullPost();
 
   postRef.data.texto = text;
 
-  await postRef.pushOrder();
+  const postUpdated = await postRef.pushPost();
 
-  return { updated: true };
+  return postUpdated;
+}
+
+export async function deletePostById(postId: string): Promise<any> {
+  const postRef = new Post(postId);
+  const postDeleted = await postRef.deletePost();
+
+  return postDeleted;
 }

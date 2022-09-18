@@ -75,6 +75,6 @@ export async function getStaticProps(context: NextPageContext) {
   return {
     props: { data }, // will be passed to the page component as props
 
-    revalidate: 5, 
+    revalidate: 2, 
   };
 }

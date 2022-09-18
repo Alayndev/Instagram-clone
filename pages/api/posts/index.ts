@@ -17,7 +17,6 @@ let bodySchema = yup
 
 async function getPosts(req: NextApiRequest, res: NextApiResponse<PostType[]>) {
   const posts: PostType[] = await getAllPosts();
-  console.log("🚀 ~ file: index.ts ~ line 20 ~ getPosts ~ posts", posts);
 
   res.status(200).json(posts);
 }

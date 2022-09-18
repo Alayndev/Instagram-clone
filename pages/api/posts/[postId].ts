@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import methods from "micro-method-router";
-import { getPostById } from "controllers/post";
+import { getPostById, deletePostById } from "controllers/post";
 
 async function getPost(req: NextApiRequest, res: NextApiResponse) {
   try {
@@ -12,8 +12,19 @@ async function getPost(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
+async function deletePost(req: NextApiRequest, res: NextApiResponse) {
+  try {
+    const postDeleted = await deletePostById(req.query.postId as string);
+
+    res.status(200).json(postDeleted);
+  } catch (error) {
+    res.status(404).json({ error });
+  }
+}
+
 const handler = methods({
   get: getPost,
+  delete: deletePost,
 });
 
 export default handler;

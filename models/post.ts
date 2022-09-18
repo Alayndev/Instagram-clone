@@ -17,20 +17,36 @@ class Post {
     this.ref = collection.doc(id);
   }
 
-  async pullOrder(): Promise<FirebaseFirestore.DocumentData> {
+  private async postExists(): Promise<FirebaseFirestore.DocumentData> {
     const snapshot = await this.ref.get();
 
     if (snapshot.exists) {
-      this.data = { ...snapshot.data(), id: snapshot.id };
-
-      return this.data;
+      return snapshot;
     } else {
       throw `Post not found: ${this.id}`;
     }
   }
 
-  pushOrder() {
+  async pullPost(): Promise<FirebaseFirestore.DocumentData> {
+    const snapshot = await this.postExists();
+
+    this.data = { ...snapshot.data(), id: snapshot.id };
+
+    return this.data;
+  }
+
+  pushPost() {
     this.ref.update(this.data as AddPrefixToKeys<string, any>);
+
+    return { updated: true };
+  }
+
+  async deletePost() {
+    await this.postExists();
+
+    this.ref.delete();
+
+    return { deleted: true };
   }
 
   static async createNewPost(data: CreatePostType): Promise<PostCreatedRes> {
