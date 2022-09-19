@@ -4,11 +4,11 @@
 
 Link: [Instagram clone](https://instagram-clone-alayndev.vercel.app/)
 
-Instagram clone based on Next (React / Node). It uses Firebase Firestore and Storage. The Backend is a REST API developed with Node and Serverless Functions, applying MVC. The Frontend was built with React and consumes the mentioned REST API, it is made up of components that apply the Atomic Design. 
+Instagram clone based on Next (React / Node). It uses Firebase Firestore and Storage. The Backend is a REST API developed with Node and Serverless Functions, applying MVC. The Frontend was built with React and consumes the mentioned REST API, it is made up of components that apply Atomic Design. 
 
 It provides the following functionalities: create posts (images and/or videos), update posts likes, update posts descriptions, get all posts (applied with SSG at build time to improve performance), get a post by its id (used with updates to improve performance), delete posts, host images and videos providing the url, create three posts automatically at build time, among others. 
 
-It has a solid Backend and Frontend architecture that allows it to scale, making it possible to implement a chat with Firebase RTDB, an authentication system with Firebase Auth, and more many feautures that will be added soon.
+It has a solid Backend and Frontend architecture that allows it to scale, making it possible to implement a chat with Firebase RTDB, an authentication system with Firebase Auth, and many more features to be added soon.
 
 <br/>
 
