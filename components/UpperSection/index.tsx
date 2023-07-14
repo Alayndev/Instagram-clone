@@ -20,7 +20,7 @@ export function UpperSection({ setPosts }: UpperSectionProps) {
 
   return (
     <>
-      <div className="border-b-2 p-3 flex flex-col gap-5 sticky top-0 z-50 bg-white">
+      <div className="border-b-2 p-3 flex flex-col gap-5 sticky top-0 z-50 bg-white text-black">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-center">
             <div className="h-[50px] w-[100px] md:w-[150px]">

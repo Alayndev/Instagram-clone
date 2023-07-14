@@ -10,7 +10,7 @@ import { InstagramStory } from "components/ui/InstagramStory";
 import { ShowImage } from "components/ui/ShowImage";
 import { InstagramCardProps, PostType } from "lib/types";
 import { Modal } from "components/ui/Modal";
-import { PrimaryButton } from "components/ui/buttons";
+import { CancelButton, PrimaryButton, SecondaryButton } from "components/ui/buttons";
 import { ConfirmModal } from "components/ui/ConfirmModal/confirm-modal";
 
 // Todo: Componentizar flujo delete para que quede limpio InstagramCard
@@ -112,7 +112,7 @@ export function InstagramCard({
 
   return (
     <>
-      <div className="border-2 w-11/12 max-w-[450px] rounded-xl bg-white">
+      <div className="border-2 w-11/12 max-w-[450px] rounded-xl bg-white text-black">
         <div className="flex items-center justify-between p-2 pr-4 border-b-2">
           <div className="flex items-center gap-2">
             <InstagramStory src="https://firebasestorage.googleapis.com/v0/b/instagram-clone-6bd64.appspot.com/o/WhatsApp%20Image%202022-07-04%20at%2012.40.51%20PM.jpeg-1662134350288?alt=media&token=f62cf9bd-b5bf-44c2-9dc4-4fa0a4a84a17" />
@@ -178,13 +178,9 @@ export function InstagramCard({
       {isOpen && (
         <Modal>
           <div className="flex flex-col items-center gap-5 w-48">
-            <div onClick={openEditModal} className="cursor-pointer">
-              Editar
-            </div>
+            <SecondaryButton text="Editar" onClick={openEditModal} className="cursor-pointer w-full" />
 
-            <div onClick={openDeleteModal} className="cursor-pointer">
-              Eliminar
-            </div>
+            <CancelButton className="w-full" text="Eliminar" onClick={openDeleteModal} />
 
             <PrimaryButton
               className="w-full"

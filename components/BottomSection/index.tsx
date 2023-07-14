@@ -5,7 +5,7 @@ import { InstagramStory } from "components/ui/InstagramStory";
 export function BottomSection() {
   return (
     <>
-      <div className="md:hidden border-t-2 p-3 px-10 flex flex-col gap-5 sticky bottom-0 right-0 z-50 bg-white">
+      <div className="md:hidden border-t-2 p-3 px-10 flex flex-col gap-5 sticky bottom-0 right-0 z-50 bg-white text-black">
         <div className="flex items-center justify-between">
           <BsHouseDoor className="w-7 h-7" />
 

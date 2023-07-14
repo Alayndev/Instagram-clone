@@ -107,7 +107,7 @@ export function ImageUploader({
             )}
           </div>
         ) : (
-          <div className="grid place-items-center cursor-pointer w-40">
+          <div className="grid place-items-center cursor-pointer w-40 text-black">
             {!loading ? (
               <>
                 <span className="uppercase">

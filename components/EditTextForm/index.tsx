@@ -88,10 +88,11 @@ export function EditTextForm({
           )}
 
           <div className="flex justify-between mt-5">
-            <CancelButton text="Cancelar" onClick={closeModal} />
+            <CancelButton text="Cancelar" className="p-2" onClick={closeModal} />
 
             <PrimaryButton
               onClick={handleSubmit(editPost)}
+              className="p-2"
               text="Editar texto"
             />
           </div>

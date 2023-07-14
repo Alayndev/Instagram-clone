@@ -15,7 +15,7 @@ const Home: NextPage = ({
     <div className="h-[100vh] flex flex-col">
       <UpperSection setPosts={setPosts} />
 
-      <main className="grow overflow-scroll no-scrollbar">
+      <main className="grow overflow-scroll no-scrollbar bg-white">
         <div className="flex flex-col gap-5 justify-center items-center py-5">
           {posts.map((post: PostType) => {
             return (
@@ -66,7 +66,6 @@ const createInitialPosts = async () => {
 };
 
 export async function getStaticProps(context: NextPageContext) {
-  // Todo: Crearlos con un id, así si ya están creados NO los vuelve a crear
   // await createInitialPosts();
 
   const data = await getAllPosts();

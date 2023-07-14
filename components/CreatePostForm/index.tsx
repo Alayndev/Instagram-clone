@@ -77,7 +77,7 @@ export function CreatePostForm({ setPosts, setIsOpen }: CreatePostFormProps) {
         <div className="flex flex-col gap-5 md:gap-7">
           <div className="flex gap-5 items-center justify-between">
             <AiOutlineClose
-              className="w-6 h-6 cursor-pointer"
+              className="w-6 h-6 cursor-pointer text-black"
               onClick={closeModal}
             />
 

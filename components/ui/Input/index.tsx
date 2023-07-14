@@ -8,7 +8,7 @@ export const Input = (props: InputProps) => {
         id={props.name}
         name={props.name}
         type={props.type}
-        className={`peer p-1 h-10 w-full border-0 border-b text-gray-900 placeholder-transparent focus:outline-none  focus:ring-0 ${
+        className={`peer p-1 h-10 w-full border-0 border-b text-gray-900 placeholder-transparent focus:outline-none focus:ring-0 bg-white ${
           props.error
             ? "border-red-300 focus:border-red-500"
             : "border-gray-novateva focus:border-blue-maker"

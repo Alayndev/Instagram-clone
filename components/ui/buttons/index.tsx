@@ -29,7 +29,7 @@ export function CancelButton({ onClick, className, text }: ButtonProps) {
   return (
     <button
       type="button"
-      className={`bg-[#FD1D1D] no-underline text-[#D9ECFF] hover:bg-[#d62c2c] text-center text-lg rounded-lg p-1 ${className}`}
+      className={`bg-[#ff1616] no-underline text-[#D9ECFF] hover:bg-[#d62c2c] text-center text-lg rounded-lg p-1 ${className}`}
       onClick={onClick}
     >
       {text}
